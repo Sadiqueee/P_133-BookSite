@@ -49,7 +49,7 @@ class Register
                     $allOK=false;
                     exit();
                 } else
-                    echo "<p>Votre compte a été créer.</p></br><a>Se connecter</a>";
+                    echo "<a href = 'Log.php'>Se connecter</a>";
             } else {
                 echo "<p><script language=javascript>alert('Votre mot de passe doit contenir un caractère spécial, une majuscule, un chiffre et doit faire au moins 8 caractères de long')</script></p>";
                 $allOK=false;
@@ -57,7 +57,9 @@ class Register
         }
 
         if($allOK) {
-            $this->InsertData();
+            if($this->CheckEmail()) {
+                $this->InsertData();
+            }
         }
     }
 
@@ -69,15 +71,40 @@ class Register
         $date=date("Y-m-d");
         $password=$_POST["password"];
         $password=password_hash($password,PASSWORD_DEFAULT);
+        $query="INSERT INTO t_user VALUES (NULL,'".$_POST["name"]."','".$_POST["surname"]."','".$_POST["mail"]."','".$password."',0,'".$date."',0);";
 
-        //$query="INSERT INTO t_user(useNom,usePrenom,useMail,useMdp,useEntryDate) VALUES ('".$_POST["name"]."','".$_POST["surname"]."','".$_POST["mail"]."','".$_POST["password"]."','".$date."';)";
-        $query="INSERT INTO t_user VALUES (NULL,'".$_POST["name"]."','".$_POST["surname"]."','".$_POST["mail"]."','".$password."',null,'".$date."',null);";
         try {
             $connection->query($query);
             echo "<p><script language='JavaScript'>alert('New record created successfully')</script></p>";
         }
         catch(PDOException  $e){
             echo "<p><script language='JavaScript'>alert('Failed to add the data')</script></p>";
+        }
+    }
+
+    /**
+     * @return bool
+     * vérifie que l'adresse mail spécifiée ne soit pas déjà prise
+     */
+    private function CheckEmail(){
+        $connection = new PDO("mysql:host=".self::bddServer.";dbname=".self::bddName.";charset=utf8",self::bddUserName,self::bddPassword);
+        $query = "SELECT DISTINCT useMail FROM t_user";
+        $allMail="";
+
+        try{
+            $allMail=$connection->query($query);
+            $allMail=$allMail->fetch(PDO::FETCH_ASSOC);
+            foreach ($allMail as $mail) {
+                if(htmlspecialchars(trim($_POST['mail']))==$mail){
+                    echo "<p><script language='JavaScript'>alert('That email address is already taken')</script></p>";
+                    return false;
+                }
+            }
+            return true;
+        }
+        catch(PDOException $e){
+            echo "<p><script language='JavaScript'>alert('There was a problem retrieving all the mail addresses')</script></p>";
+            return false;
         }
     }
 }
