@@ -15,7 +15,7 @@
       <file leaf-file-name="Register.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Register.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="683">
+            <state relative-caret-position="1091">
               <caret line="105" column="113" lean-forward="false" selection-start-line="105" selection-start-column="113" selection-end-line="105" selection-end-column="113" />
               <folding>
                 <element signature="e#7#128#0#PHP" expanded="false" />
@@ -25,6 +25,18 @@
                 <element signature="e#3300#3398#0#PHP" expanded="false" />
                 <marker date="1518165004000" expanded="true" signature="2842:2972" ph="INSERT INTO t_user... " />
                 <marker date="1518165004000" expanded="true" signature="3591:3626" ph="SELECT DISTI... t_user" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddBook.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AddBook.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding>
+                <element signature="e#6#91#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -56,6 +68,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Register.php" />
+        <option value="$PROJECT_DIR$/AddBook.php" />
       </list>
     </option>
   </component>
@@ -132,12 +145,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1518162848603</updated>
-      <workItem from="1518162849780" duration="2151000" />
+      <workItem from="1518162849780" duration="3027000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2151000" />
+    <option name="totallyTimeSpent" value="3027000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="0" />
@@ -199,9 +212,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/AddBook.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#91#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Register.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="683">
+        <state relative-caret-position="1091">
           <caret line="105" column="113" lean-forward="false" selection-start-line="105" selection-start-column="113" selection-end-line="105" selection-end-column="113" />
           <folding>
             <element signature="e#7#128#0#PHP" expanded="false" />
