@@ -7,6 +7,17 @@ $connexion = new Connexion_DB();
  * Date: 02.02.2018
  * Time: 08:56
  */
+
+
+
+function addbook(){
+
+}
+
+
+
+
+
 ?>
     <!DOCTYPE html>
     <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
