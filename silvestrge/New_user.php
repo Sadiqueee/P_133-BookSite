@@ -1,4 +1,5 @@
 <?php
+include("Register.php");
 /**
  * ETML
  * Auteur : Géraud Silvestri
@@ -17,19 +18,16 @@
     <body>
         <section>
             <form method="POST">
-                <p>Nom </p><input name="name"/>
-                <p>Prénom </p><input name="surname"/>
-                <p>Adresse mail </p><input name="mail"/>
-                <p>Mot de passe </p><input name="password" type="password"/>
-                <p>Réentrer votre mot de passe</p><input name="passwordAgain" type="password"/></br></br>
+                <label for="name">Nom </label><input name="name"/><br>
+                <label for="surname">Prénom </label><input name="surname"/><br>
+                <label for="mail">Adresse mail </label><input name="mail"/><br>
+                <label for="password">Mot de passe </label><input name="password" type="password"/><br>
+                <label for="passwordAgain">Réentrer votre mot de passe</label><input name="passwordAgain" type="password"/></br></br>
                 <input id="validate" type="submit" name="submit" value="Valider"/>
                 <p id="answer"><?php ?></p>
-                <a id="link" href="https://www.etml.ch/"></a>
                 </form>
 
             <?php
-            include("Register.php");
-
             if(isset($_POST['submit'])){
                 $register=new Register();
                 $register->CreateAccount();

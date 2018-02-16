@@ -14,9 +14,13 @@ CREATE TABLE t_book(
         idBook       int (11) Auto_increment  NOT NULL ,
         booTitle     Varchar (50) ,
         booPages     Int ,
+		booAuthor	 Varchar (100) ,
+		booEditor	 Varchar (100) ,
         booExtrait   Varchar (100) ,
         booSummary   Mediumtext ,
         booFrontPage Varchar (50) ,
+		booDate		 Date ,
+		booAverage	 DECIMAL (2,1) ,
         idUser       Int ,
         PRIMARY KEY (idBook )
 )ENGINE=InnoDB;
@@ -31,10 +35,11 @@ CREATE TABLE t_user(
         useNom         Varchar (50) ,
         usePrenom      Varchar (50) ,
         useMail        Varchar (50) ,
-        useMdp         Varchar (50) ,
+        useMdp         Varchar (500) ,
         useNmbrComment Int ,
         useEntryDate   Date ,
         useNmbrPosted  Int ,
+		useRole		   Varchar (50) ,
         PRIMARY KEY (idUser )
 )ENGINE=InnoDB;
 
@@ -110,7 +115,15 @@ CREATE TABLE t_edit(
         PRIMARY KEY (idBook ,idAuthor )
 )ENGINE=InnoDB;
 
+INSERT INTO `t_user` (`idUser`, `useNom`, `usePrenom`, `useMail`, `useMdp`, `useNmbrComment`, `useEntryDate`, `useNmbrPosted`,`useRole`) VALUES
+(1, 'Default', 'Default', 'default@default.default', 'Default', NULL, '2018-02-01', NULL,"admin");
 
+INSERT INTO `t_category` (`idCategory`, `catName`) VALUES
+(1, 'Fantasy'),
+(2, 'Romance'),
+(3, 'Science-fiction'),
+(4, 'Polar'),
+(5, 'Historique');
 #------------------------------------------------------------
 # Table: t_create
 #------------------------------------------------------------

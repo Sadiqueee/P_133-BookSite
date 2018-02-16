@@ -1,9 +1,10 @@
 <?php
+include("New_book.php");
 /**
- * Created by PhpStorm.
- * User: fischerda
- * Date: 02.02.2018
- * Time: 08:56
+ * ETML
+ * Auteur : fisherda
+ * Date : 02.02.2018
+ * Description : Page pour l'ajout d'un livre a un utilisateur
  */
 ?>
     <!DOCTYPE html>
@@ -132,34 +133,47 @@
 
 
                     <div class="heading text-center"><hr><h2>Votre Livre</h2><hr></div>
-                    <form action="">
-
+                    <form method="post">
 
                             <div class="lblForm">
-                                <label for="title">Titre :</label><br>
-                                <label for="category">Catégorie :</label><br>
-                                <label for="autor">Auteur :</label><br>
-                                <label for="editor">Editeur :</label><br>
-                                <label for="dateEditing">Année d'édition :</label><br>
-                                <label for="part">Extrait :</label><br>
-                                <label for="numberPage">Nombres de pages :</label><br>
-                                <label for="summary">Résumé :</label><br>
-                                <label id="covertLabel" for="covert">Image de couverture :</label><br>
+                                <label for="title">Titre*</label><br>
+                                <label for="category">Catégorie*</label><br>
+                                <label for="autor">Auteur*</label><br>
+                                <label for="editor">Editeur*</label><br>
+                                <label for="dateEditing">Année d'édition*</label><br>
+                                <label for="part">Extrait*</label><br>
+                                <label for="numberPage">Nombres de pages*</label><br>
+                                <label for="summary">Résumé*</label><br>
+                                <label id="covertLabel" for="covert">Image de couverture*</label><br>
                             </div>
                             <div class="inpForm">
                                 <input id="title" name="title" type="text"><br>
-                                <input  id="category" name="category" type="text"><br>
-                                <input id="autor"  name="autor" type="text"><br>
+                                <select  id="category" name="category" type="text"><br>
+                                    <option>Fantasy</option>
+                                    <option>Romance</option>
+                                    <option>Science-fiction</option>
+                                    <option>Polar</option>
+                                    <option>Historique</option>
+                                </select>
+                                <input id="autor"  name="author" type="text"><br>
                                 <input id="editor"  name="editor" type="text"><br>
-                                <input id="dateEditing"  name="dateEditing" type="text"><br>
+                                <input id="dateEditing"  name="dateEditing" type="date"><br>
                                 <input id="part" name="part" type="text"><br>
-                                <input id="numberPage" name="numberPage" type="text"><br>
+                                <input id="numberPage" name="numberPage" type="number"><br>
                                 <textarea name="summary" id="summary" cols="35" rows="5"></textarea><br>
                                 <input id="covert" name="covert" type="file"><br>
-                                <input name="send" type="submit">
+                                <input name="submit" type="submit">
                             </div>
 
                         </form>
+
+                    <?php
+
+                    if(isset($_POST['submit'])) {
+                        $book = new New_book();
+                        $book->addBook();
+                    }
+                    ?>
                     <div class="fh5co-spacer fh5co-spacer-sm"></div>
 
 
