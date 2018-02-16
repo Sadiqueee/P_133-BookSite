@@ -7,13 +7,14 @@
  * Time: 08:56
  */
 
+session_start();
+include("LogIn.php");
 
+if(isset($_POST['submit'])){
+    $register=new LogIn();
+    $register->CheckData();
+}
 
-
-
-
-include ("Register.php");
-$register = new Register();
 
 
 ?>
@@ -25,7 +26,7 @@ $register = new Register();
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Inscription</title>
+    <title>Connexion</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
     <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
@@ -117,13 +118,13 @@ FREE HTML5 TEMPLATE
 
 <div id="fh5co-hero" style="background-image: url(images/slide_2.jpg);">
     <div class="overlay"></div>
-    <a href="#fh5co-main" class="smoothscroll fh5co-arrow to-animate hero-animate-4"><i class="ti-angle-down"></i></a>
+
     <!-- End fh5co-arrow -->
     <div class="container">
         <div class="col-md-8 col-md-offset-2">
             <div class="fh5co-hero-wrap">
                 <div class="fh5co-hero-intro">
-                    <h1 class="to-animate hero-animate-1">Inscription</h1>
+                    <h1 class="to-animate hero-animate-1">Connexion</h1>
 
 
                 </div>
@@ -143,41 +144,21 @@ FREE HTML5 TEMPLATE
 
 
         <div class="fh5co-spacer fh5co-spacer-md"></div>
-        <form action="Register.php" method="post">
-
-
+        <form method="POST">
             <div class="lblForm">
-                <label for="name">Nom :</label><br>
-                <label for="surname">Prénom :</label><br>
-                <label for="mail">Email :</label><br>
-                <label for="password">Mot de passe :</label><br>
-                <label for="passwordAgain">Confirmation de mot de passe:</label><br>
+                <label for="mail">Adresse mail </label><br>
+                <label for="password">Mot de passe </label>
             </div>
             <div class="inpForm">
-                <input id="name" name="name" type="text"><br>
-                <input  id="surname" name="surname" type="text"><br>
-                <input id="mail"  name="mail" type="text"><br>
-                <input id="password"  name="password" type="password"><br>
-                <input id="passwordAgain"  name="passwordAgain" type="password"><br>
-                <input name="summit" type="submit">
+                <input id="mail" type="text" name="mail"/><br>
+                <input id="password" name="password" type="password"/><br>
+                <input id="validate" type="submit" name="submit" value="Valider"/>
             </div>
 
         </form>
+        <div class="fh5co-spacer fh5co-spacer-md"></div>
 
 
-
-
-
-
-
-        <div class="row">
-
-
-            <div class="fh5co-spacer fh5co-spacer-lg"></div>
-
-
-        </div>
-        <!-- END row -->
 
 
 
@@ -190,7 +171,7 @@ FREE HTML5 TEMPLATE
 
 
 <footer role="contentinfo" id="fh5co-footer">
-    <a href="#" class="fh5co-arrow fh5co-gotop footer-box"><i class="ti-angle-up"></i></a>
+
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-sm-6 footer-box">

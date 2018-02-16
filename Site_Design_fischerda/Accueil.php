@@ -56,6 +56,7 @@
     <!-- LightBox Style -->
     <link rel="stylesheet" href="css/lightbox.css">
 
+
     <!-- Modernizr JS -->
     <script src="js/modernizr-2.6.2.min.js"></script>
     <!-- FOR IE9 below -->
@@ -107,6 +108,7 @@
                     <h1 class="to-animate hero-animate-1">Bienvenue sur Book Factor !</h1>
                     <h2 class="to-animate hero-animate-2">David Fischer et Géraud Silvestri</h2>
                     <p class="to-animate hero-animate-3"><a href="Inscription.php"  class="btn btn-outline btn-md">S'inscrire</a></p>
+                    <p class="to-animate hero-animate-3"><a href="Log.php" class="btn btn-outline btn-md">Se connecter</a></p>
                 </div>
             </div>
         </div>
