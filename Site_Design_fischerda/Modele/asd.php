@@ -6,8 +6,14 @@
  * Date: 02.03.2018
  * Time: 08:49
  */
+echo "salut";
+
 class Modele
 {
+    function __construct()
+    {
+    }
+
     function Head(){
             echo '
             <!DOCTYPE html>

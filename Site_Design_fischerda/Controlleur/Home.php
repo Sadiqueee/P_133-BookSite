@@ -6,12 +6,20 @@
  * Time: 08:46
  */
 
-include "../Modèle/Modele.php";
+
+include ("Modele/basicSkeleton.php");
+include ("Vue/View.php");
 
 
+$model = new basicSkeleton();
+$view = new View();
 
-$model = new Modele();
+$head = $model->Head();
+$nav = $model->HeaderNav();
+$footer = $model->Footer();
+$content = "salut";
 
-$model ->Head();
-$model ->HeaderNav();
-$model ->Footer();
+
+$view->output($head.$nav.$content.$footer);
+
+?>
