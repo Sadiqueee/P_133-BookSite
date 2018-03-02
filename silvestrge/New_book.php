@@ -46,7 +46,7 @@ class New_book
     public function addCategory(){
         if(isset($_POST['category'])) {
             $queryCat = "SELECT DISTINCT idCategory from t_category WHERE catName='" . $_POST['category'] . "';";
-            $queryBook = "SELECT DISTINCT "
+            $queryBook = "SELECT DISTINCT idBook from t_book WHERE boo";
             $connection = new PDO("mysql:host=" . self::bddServer . ";dbname=" . self::bddName . ";charset=utf8", self::bddUserName, self::bddPassword);
 
             $idCat=$connection->query($queryCat);
