@@ -101,7 +101,7 @@ class basicSkeleton
                     
                         </div>
                     </header>
-                    <!--<div id="fh5co-hero" style="background-image: url(Ressources/images/slide_2.jpg);">-->
+                    <div id="fh5co-hero" style="background-image: url(Ressources/images/slide_2.jpg);">
     <div class="overlay"></div>
     <a href="#fh5co-main" class="smoothscroll fh5co-arrow to-animate hero-animate-4"><i class="ti-angle-down"></i></a>
     <!-- End fh5co-arrow -->
@@ -191,7 +191,15 @@ class basicSkeleton
                 <!-- LightBox -->
                 <script src="Ressources/js/lightbox.js"></script>';
     }
+    function ContentHome(){
+        $content = '<div id="fh5co-main"><div class="fh5co-cards"><div class="container-fluid"><div class="row animate-box"><div class="col-md-12 heading text-center"><h2>Nos derniers Livres</h2></div></div><div  class="row">';
+        for ($i = 0 ; $i < 5 ; $i++)
+            $content.= '<div style="width: 20%" class="col-lg-2-5 col-md-2 col-sm-2 animate-box"><a class="fh5co-card" href="#"><img src="Ressources/images/img_large_1.jpg" alt="Free HTML5 Bootstrap template" class="img-responsive"><div class="fh5co-card-body"><h3>Titre : </h3><h5>Auteur : </h5><h5>Date de Sortie : </h5><h5>Posté par : </h5></div></a></div>';
 
+        $content.= "";
+        var_dump($content);
+        //</div></div></div><div class="container"><div class="row text-center" id="fh5co-features"><div class="col-md-12 heading animate-box"><h2>Dans quel but a été créer ce site</h2></div><p>Ce site à été créer lors du projet Web2 réaliser en php!</p></div><!-- END row --></div><!-- END container --><div style="background-color: whitesmoke"><div class="row animate-box"><div class="col-md-12 heading text-center"><hr><h2>Le livre de la semaine</h2><hr></div></div><div class="animate-box fh5co-product-2"><div class="fh5co-half img" style="background-image: url(images/img_large_6.jpg);"></div><div class="fh5co-half"><h3>This is Symbol</h3><p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. </p><p><a href="#" class="btn btn-outline btn-md">Get Started</a></p></div></div></div></div>";
+    }
 
 
 }

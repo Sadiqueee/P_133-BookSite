@@ -17,9 +17,9 @@ $view = new View();
 $head = $model->Head();
 $nav = $model->HeaderNav();
 $footer = $model->Footer();
-$content = "salut";
+$content = $model->ContentHome();
 
-
-$view->output($head.$nav.$content.$footer);
+echo'<?php echo "salut"; ?>'
+//$view->output($head.$nav.$content.$footer);
 
 ?>
