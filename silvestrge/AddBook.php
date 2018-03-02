@@ -171,7 +171,18 @@ include("New_book.php");
 
                     if(isset($_POST['submit'])) {
                         $book = new New_book();
-                        $book->addBook();
+
+                        if ($book->CheckConnection()) {
+                            if ($book->CheckBook()) {
+                                $book->addBook();
+                            } else {
+                                echo "<p>alert('Le livre spécifié à déjà été publié sur ce site'</p><br>";
+                                echo "<a href=\"New_Comment\">Cliquez ici pour ajouter un commentaire à ce livre</a>";
+                            }
+                        }else{
+                            echo "<p>Veuillez vous connecter avant de pouvoir entrer un livre.</p><br>";
+                            echo "<a href=\"Log.php\">Cliquez ici pour vous connecter.</a>";
+                        }
                     }
                     ?>
                     <div class="fh5co-spacer fh5co-spacer-sm"></div>

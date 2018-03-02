@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("LogIn.php");
 /**
  * ETML
@@ -19,14 +20,17 @@ include("LogIn.php");
                 <label for="mail">Adresse mail </label><input name="mail"/>
                 <label for="password">Mot de passe </label><input name="password" type="password"/>
                 <input id="validate" type="submit" name="submit" value="Valider"/>
-                <p id="answer"><?php ?></p>
-                <a id="link" href="AddBook.php">aasd</a>
             </form>
 
 <?php
 if(isset($_POST['submit'])){
     $register=new LogIn();
-    $register->CheckData();
+    if($register->CheckData()){
+        echo "<p><script language='JavaScript'>alert('You\'re connected')</script></p>";
+    }
+    else{
+        echo "<p><script language='JavaScript'>alert('Check your data and try again')</script></p>";
+    }
 }
 ?>
     </section>

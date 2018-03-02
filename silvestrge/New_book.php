@@ -19,6 +19,7 @@ class New_book
      */
     public function addBook()
     {
+        //vérifie que l'on est connecté
         if (isset($_SESSION['connected'])) {
             if ($_SESSION['connected']) {
                 if (isset($_POST['title']) && isset($_POST['category']) && isset($_POST['author']) && isset($_POST['editor']) && isset($_POST['dateEditing']) && isset($_POST['part']) && isset($_POST['numberPage']) && isset($_POST['summary']) && isset($_POST['covert']) && isset($_POST['part'])) {
@@ -41,16 +42,73 @@ class New_book
 
 
     /**
+     * @return bool
      * ajoute une catégorie au livre
      */
-    public function addCategory(){
-        if(isset($_POST['category'])) {
+    public function addCategory()
+    {
+        if (isset($_POST['category'])) {
             $queryCat = "SELECT DISTINCT idCategory from t_category WHERE catName='" . $_POST['category'] . "';";
-            $queryBook = "SELECT DISTINCT idBook from t_book WHERE boo";
+            $queryBook = "SELECT DISTINCT idBook from t_book WHERE booTitle='" . $_POST['title'] . "';";
             $connection = new PDO("mysql:host=" . self::bddServer . ";dbname=" . self::bddName . ";charset=utf8", self::bddUserName, self::bddPassword);
 
-            $idCat=$connection->query($queryCat);
-            $idCat=$idCat->fetch(PDO::FETCH_ASSOC);
+            //récupère les ids de la catégorie et du livre
+            $idCat = $connection->query($queryCat);
+            $idCat = $idCat->fetch(PDO::FETCH_ASSOC);
+            $idBook = $connection->query($queryBook);
+            $idBook = $idBook->fetch(PDO::FETCH_ASSOC);
+
+            //ajoute une catégorie au livre
+            $queryAdd = "INSET INTO t_define VALUES ($idCat[0],$idBook[0]);";
+            $connection->query($queryCat);
+        }
+    }
+
+    /**
+     * @return bool
+     * vérifie que le livre mail spécifié ne soit pas déjà sur le site
+     */
+    public function CheckBook(){
+        //connection à la base de donnée
+        $connection = new PDO("mysql:host=".self::bddServer.";dbname=".self::bddName.";charset=utf8",self::bddUserName,self::bddPassword);
+
+        //requêtes et variables
+        $query = "SELECT DISTINCT booTitle FROM t_book";
+        $allBooks="";
+
+        //récupère et vérifie les titres des livres
+        try {
+            $allBooks = $connection->query($query);
+            $allBooks = $allBooks->fetch(PDO::FETCH_ASSOC);
+
+            //vérifie qu'un livre existe déjà
+            if($allBooks!=null) {
+                foreach ($allBooks as $book) {
+                    if (htmlspecialchars($_POST['title']) == $book) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        catch(PDOException $e){
+            return false;
+        }
+    }
+
+    /**
+     * @return bool
+     * Vérifie que le user est bel et bien connecté
+     */
+    public function CheckConnection(){
+        //vérifie que l'on est connecté
+        if (isset($_SESSION['connected'])) {
+            if ($_SESSION['connected']) {
+                return true;
+            }
+        }
+        else{
+            return false;
         }
     }
 }
