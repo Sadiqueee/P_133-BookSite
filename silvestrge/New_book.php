@@ -26,7 +26,7 @@ class New_book
                     if ($_POST['title'] && $_POST['category'] && $_POST['author'] && $_POST['editor'] && $_POST['dateEditing'] && isset($_POST['part']) && $_POST['numberPage'] && $_POST['summary'] && $_POST['covert'] && $_POST['part']) {
                         $connection = new PDO("mysql:host=" . self::bddServer . ";dbname=" . self::bddName . ";charset=utf8", self::bddUserName, self::bddPassword);
 
-                        $queryID = "SELECT DISTINCT idUser FROM t_user WHERE useMail='geraud@peyredieu.fr';";
+                        $queryID = "SELECT DISTINCT idUser FROM t_user WHERE useMail='".$_SESSION['login']."';";
                         $id = $connection->query($queryID);
                         $id = $id->fetch(PDO::FETCH_ASSOC);
                         $query = "INSERT INTO t_book VALUES (NULL,'" . $_POST["title"] . "','" . $_POST["numberPage"] . "','" . $_POST["part"] . "','" . $_POST['summary'] . "','" . $_POST['covert'] . "','" . $id['idUser'] . "\')');";
