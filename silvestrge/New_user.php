@@ -68,6 +68,8 @@ include("Register.php");
                             echo "<script language=javascript>alert('L\'ajout n\'as pas pu se faire.')</script>";
                             break;
                     }
+                }else{
+                    echo "Cette adresse mail est déjà prise";
                 }
             }
             ?>

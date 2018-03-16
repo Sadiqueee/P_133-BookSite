@@ -173,13 +173,22 @@ include("New_book.php");
                         $book = new New_book();
 
                         if ($book->CheckConnection()) {
-                            if ($book->CheckBook()) {
-                                $book->addBook();
+                            if ($book->CheckFields()) {
+                                if ($book->CheckBook()) {
+                                    if ($book->CheckImage()) {
+                                        if ($book->addBook())
+                                            echo "Le livre a été ajouté";
+                                    } else {
+                                        echo "Veuillez rentrer une image";
+                                    }
+                                } else {
+                                    echo "Le livre spécifié à déjà été publié sur ce site";
+                                    echo "<a href=\"New_Comment\">Cliquez ici pour ajouter un commentaire à ce livre</a>";
+                                }
                             } else {
-                                echo "<p>alert('Le livre spécifié à déjà été publié sur ce site'</p><br>";
-                                echo "<a href=\"New_Comment\">Cliquez ici pour ajouter un commentaire à ce livre</a>";
+                                echo "Veuillez remplir tout les champs";
                             }
-                        }else{
+                        } else {
                             echo "<p>Veuillez vous connecter avant de pouvoir entrer un livre.</p><br>";
                             echo "<a href=\"Log.php\">Cliquez ici pour vous connecter.</a>";
                         }
@@ -200,7 +209,6 @@ include("New_book.php");
 
 
                     <div class="fh5co-spacer fh5co-spacer-lg"></div>
-
 
                 </div>
                 <!-- END row -->

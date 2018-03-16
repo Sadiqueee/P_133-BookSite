@@ -74,14 +74,26 @@ class Register
      * rentre les données du user dans la BDD
      */
     private function InsertData(){
+        //connection à la BDD
         $connection = new PDO("mysql:host=".self::bddServer.";dbname=".self::bddName.";charset=utf8",self::bddUserName,self::bddPassword);
+
+        //récupère les données ayant besoin d'être modifiée
         $date=date("Y-m-d");
         $password=$_POST["password"];
         $password=password_hash($password,PASSWORD_DEFAULT);
-        $query="INSERT INTO t_user VALUES (NULL,'".$_POST["name"]."','".$_POST["surname"]."','".$_POST["mail"]."','".$password."',0,'".$date."',0,'common');";
 
+        //requête
+        $query="INSERT INTO t_user VALUES (NULL,:name,:surname,:mail,:pw,0,:date,0,'common');";
+
+        //essaie de faire la requête
         try {
-            $connection->query($query);
+            $insert=$connection->prepare($query);
+            $insert->bindValue(':name',$_POST["name"],PDO::PARAM_STR);
+            $insert->bindValue(':surname',$_POST["surname"],PDO::PARAM_STR);
+            $insert->bindValue(':mail',$_POST["mail"],PDO::PARAM_STR);
+            $insert->bindValue(':pw',$password,PDO::PARAM_STR);
+            $insert->bindValue(':date',$date,PDO::PARAM_STR);
+            $insert->execute();
             return true;
         }
         catch(PDOException  $e){
@@ -98,18 +110,15 @@ class Register
         $connection = new PDO("mysql:host=".self::bddServer.";dbname=".self::bddName.";charset=utf8",self::bddUserName,self::bddPassword);
 
         //requêtes et variables
-        $query = "SELECT DISTINCT useMail FROM t_user";
-        $allMail="";
+        $query = "SELECT useMail FROM t_user";
 
         //récupère et vérifie les adresses mails
         try {
             $allMail = $connection->query($query);
-            $allMail = $allMail->fetch(PDO::FETCH_ASSOC);
-            if($allMail!=null) {
-                foreach ($allMail as $mail) {
-                    if (htmlspecialchars(trim($_POST['mail'])) == $mail) {
-                        return false;
-                    }
+
+            while($row = $allMail->fetch(PDO::FETCH_ASSOC)) {
+                if($_POST['mail']==$row['useMail']){
+                    return false;
                 }
             }
             return true;

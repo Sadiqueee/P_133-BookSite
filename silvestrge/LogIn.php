@@ -27,21 +27,25 @@ class LogIn
                 $pw = htmlspecialchars(trim($_POST['password']));
 
                 //requêtes SQL
-                $queryGetPW = "SELECT DISTINCT useMdp FROM t_user WHERE useMail='".$mail."';";
-                $queryGetRole = "SELECT DISTINCT useRole FROM t_user WHERE useMail='".$mail."';";
+                $queryGetPW = "SELECT DISTINCT useMdp FROM t_user WHERE useMail=:mail;";
+                $queryGetRole = "SELECT DISTINCT useStatut FROM t_user WHERE useMail=:mail;";
 
                 //connection à la BDD
                 $connection = new PDO("mysql:host=".self::bddServer.";dbname=".self::bddName.";charset=utf8",self::bddUserName,self::bddPassword);
 
                 //effectue les requêtes et récupère les données
-                $hashedPw = $connection->query($queryGetPW);
+                $getPW = $connection->prepare($queryGetPW);
+                $getPW->bindValue(':mail',$mail,PDO::PARAM_STR);
+                $hashedPw=$getPW->execute();
                 $hashedPw=$hashedPw->fetch(PDO::FETCH_ASSOC);
 
                 //si le mot de passe est bon, récupère le rôle de l'utilisateur et le connecte
-                if(password_verify($pw,$hashedPw['useMdp'])==1) {
-                    $role = $connection->query($queryGetRole);
+                if(password_verify($pw,$hashedPw['useMdp'])) {
+                    $getRole = $connection->prepare($queryGetRole);
+                    $getRole->bindValue(':mail',$mail,PDO::PARAM_STR);
+                    $role=$getRole->execute();
                     $role=$role->fetch(PDO::FETCH_ASSOC);
-                    $_SESSION['role']=$role['useRole'];
+                    $_SESSION['role']=$role['useStatut'];
                     $_SESSION['connected']=true;
                     $_SESSION['login']=$mail;
                     return true;

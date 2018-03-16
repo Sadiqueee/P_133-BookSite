@@ -31,13 +31,14 @@ CREATE TABLE t_book(
 
 CREATE TABLE t_user(
         idUser         int (11) Auto_increment  NOT NULL ,
-        useNom         Varchar (50) ,
-        usePrenom      Varchar (50) ,
+        useName         Varchar (50) ,
+        useSurname      Varchar (50) ,
         useMail        Varchar (50) ,
-        useMdp         Varchar (50) ,
+        usePW         Varchar (1000) ,
         useNmbrComment Int ,
         useEntryDate   Date ,
         useNmbrPosted  Int ,
+		useStatut      Varchar (25) ,
         PRIMARY KEY (idUser )
 )ENGINE=InnoDB;
 
