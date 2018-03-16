@@ -16,5 +16,5 @@ if (!empty($_GET['page']) && is_file('Controlleur/'.$_GET['page'].'.php'))
 }
 else
 {
-    include 'Controlleur/Home.php';
+    include 'Controlleur/Controler.php';
 }
