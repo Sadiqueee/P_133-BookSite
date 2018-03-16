@@ -12,9 +12,12 @@ session_start();
 //On inclut le contrôleur s'il existe et s'il est spécifié
 if (!empty($_GET['page']) && is_file('Controlleur/'.$_GET['page'].'.php'))
 {
+
     include 'Controlleur/'.$_GET['page'].'.php';
+
 }
 else
 {
     include 'Controlleur/Controler.php';
+    $controler = new Controler();
 }

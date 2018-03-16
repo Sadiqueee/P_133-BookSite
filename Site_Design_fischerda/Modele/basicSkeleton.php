@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Created by PhpStorm.
  * User: fischerda
@@ -11,7 +12,7 @@
  class basicSkeleton
 {
 
-
+    //Basic Method//
     function Head(){
         return '
             <!DOCTYPE html>
@@ -63,7 +64,8 @@
                 <!-- LightBox Style -->
                 <link rel="stylesheet" href="Ressources/css/lightbox.css">
             
-            
+                <!-- Form Style-->
+                <link rel="stylesheet" href="Ressources/css/cssForm.css">
                 <!-- Modernizr JS -->
                 <script src="Ressources/js/modernizr-2.6.2.min.js"></script>
                 <!-- FOR IE9 below -->
@@ -104,26 +106,10 @@
                     <div id="fh5co-hero">
     <div class="overlay"></div>
     <a href="#fh5co-main" class="smoothscroll fh5co-arrow to-animate hero-animate-4"><i class="ti-angle-down"></i></a>
-    <!-- End fh5co-arrow -->
-    <div class="container">
-        <div class="col-md-12">
-            <div class="fh5co-hero-wrap">
-                <div class="fh5co-hero-intro">
-                    <h1 class="to-animate hero-animate-1">Bienvenue sur Book Factor !</h1>
-                    <h2 class="to-animate hero-animate-2">David Fischer et Géraud Silvestri</h2>
-                    <p class="to-animate hero-animate-3"><a href="Inscription.php"  class="btn btn-outline btn-md">S\'inscrire</a></p>
-                    <p class="to-animate hero-animate-3"><a href="Log.php" class="btn btn-outline btn-md">Se connecter</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-                    
-                    
-                    ';
+    <!-- End fh5co-arrow -->';
     }
     function Footer(){
-        return '<footer role="contentinfo" id="fh5co-footer">
+         return '<footer role="contentinfo" id="fh5co-footer">
                     <a href="#" class="fh5co-arrow fh5co-gotop footer-box"><i class="ti-angle-up"></i></a>
                     <div class="container">
                         <div class="row">
@@ -190,17 +176,125 @@
                 <script src="Ressources/js/main.js"></script>
                 <!-- LightBox -->
                 <script src="Ressources/js/lightbox.js"></script>';
-    }
-    function ContentHome(){
-        $content = '<div id="fh5co-main"><div class="fh5co-cards"><div class="container-fluid"><div class="row animate-box"><div class="col-md-12 heading text-center"><h2>Nos derniers Livres</h2></div></div><div  class="row">';
-        for ($i = 0 ; $i < 5 ; $i++)
-            $content.= '<div style="width: 20%" class="col-lg-2-5 col-md-2 col-sm-2 animate-box"><a class="fh5co-card" href="#"><img src="Ressources/images/Origine.jpg" alt="Free HTML5 Bootstrap template" class="img-responsive"><div class="fh5co-card-body"><h3>Titre : Origine</h3><h5>Auteur : Dan Brown </h5><h5>Date de Sortie : 3 octobre 2017 </h5><h5>Posté par : David Fischer</h5></div></a></div>';
+     }
+    //Home Method//
+     function ContentHomeHeader(){
+         return'
+        <div class="container">
+        <div class="col-md-12">
+            <div class="fh5co-hero-wrap">
+                <div class="fh5co-hero-intro">
+                    <h1 class="to-animate hero-animate-1">Bienvenue sur Book Factor !</h1>
+                    <h2 class="to-animate hero-animate-2">David Fischer et Géraud Silvestri</h2>
+                    <p class="to-animate hero-animate-3"><a href="http://localhost:8080/P_133-BookSite/Site_Design_fischerda/?page=SignIn"  class="btn btn-outline btn-md">S\'inscrire</a></p>
+                    <p class="to-animate hero-animate-3"><a href="http://localhost:8080/P_133-BookSite/Site_Design_fischerda/?page=LogIn" class="btn btn-outline btn-md">Se connecter</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    ';}
+     function ContentHome(){
 
 
 
-        $content.='</div></div></div><div class="container"><div class="row text-center" id="fh5co-features"><div class="col-md-12 heading animate-box"><h2>Dans quel but a été créer ce site</h2></div><p>Ce site à été créer lors du projet Web2 réaliser en php!</p></div><!-- END row --></div><!-- END container --><div style="background-color: whitesmoke"><div class="row animate-box"><div class="col-md-12 heading text-center"><hr><h2>Le livre de la semaine</h2><hr></div></div><div class="animate-box fh5co-product-2"><div class="fh5co-half img" style="background-image: url(Ressources/images/Origine.jpg);"></div><div class="fh5co-half"><h3>Origine</h3><p>Robert Langdon, le célèbre professeur en symbologie, arrive au musée de Guggenheim de Bilbao pour assister à la conférence d\'un de ses anciens élèves.</p><p><a href="#" class="btn btn-outline btn-md">Lire la suite</a></p></div></div></div></div>';
-        return $content;
-    }
+
+         $content='</div></div></div><div class="container"><div class="row text-center" id="fh5co-features"><div class="col-md-12 heading animate-box"><h2>Dans quel but a été créer ce site</h2></div><p>Ce site à été créer lors du projet Web2 réaliser en php!</p></div><!-- END row --></div><!-- END container --><div style="background-color: whitesmoke"><div class="row animate-box"><div class="col-md-12 heading text-center"><hr><h2>Le livre de la semaine</h2><hr></div></div><div class="animate-box fh5co-product-2"><div class="fh5co-half img" style="background-image: url(Ressources/images/Origine.jpg);"></div><div class="fh5co-half"><h3>Origine</h3><p>Robert Langdon, le célèbre professeur en symbologie, arrive au musée de Guggenheim de Bilbao pour assister à la conférence d\'un de ses anciens élèves.</p><p><a href="#" class="btn btn-outline btn-md">Lire la suite</a></p></div></div></div></div>';
+         return $content;
+     }
+    //DoLogIn Method//
+     function ContentLogInHeader(){
+         return '<div class="container">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="fh5co-hero-wrap">
+                <div class="fh5co-hero-intro">
+                    <h1 class="to-animate hero-animate-1">Connexion</h1>
 
 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>';
+     }
+     function ContentLogIn(){
+         return '<div id="fh5co-main">
+    <div class="container">
+        <div class="fh5co-spacer fh5co-spacer-md"></div>
+        <form method="POST">
+            <div class="lblForm">
+                <label for="mail">Adresse mail </label><br>
+                <label for="password">Mot de passe </label>
+            </div>
+            <div class="inpForm">
+                <input id="mail" type="text" name="mail"/><br>
+                <input id="password" name="password" type="password"/><br>
+                <input id="validate" type="submit" name="submit" value="Valider"/>
+            </div>
+        </form>
+        <div class="fh5co-spacer fh5co-spacer-md"></div>
+    </div>
+    <!-- END container -->
+</div>';
+     }
+    //SignIn Method//
+     function ContentSignInHeader(){
+         return '<div class="container">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="fh5co-hero-wrap">
+                <div class="fh5co-hero-intro">
+                    <h1 class="to-animate hero-animate-1">Inscription</h1>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>';
+     }
+     function ContentSignIn(){
+         return '<div class="container">
+
+
+        <div class="fh5co-spacer fh5co-spacer-md"></div>
+        <form method="post">
+
+
+            <div class="lblForm">
+                <label for="name">Nom :</label><br>
+                <label for="surname">Prénom :</label><br>
+                <label for="mail">Email :</label><br>
+                <label for="password">Mot de passe :</label><br>
+                <label for="passwordAgain">Confirmation de mot de passe:</label><br>
+            </div>
+            <div class="inpForm">
+                <input id="name" name="name" type="text"><br>
+                <input  id="surname" name="surname" type="text"><br>
+                <input id="mail"  name="mail" type="text"><br>
+                <input id="password"  name="password" type="password"><br>
+                <input id="passwordAgain"  name="passwordAgain" type="password"><br>
+                <input id="submit" name="submit" type="submit">
+            </div>
+
+        </form>
+
+
+
+
+
+
+
+        <div class="row">
+
+
+            <div class="fh5co-spacer fh5co-spacer-lg"></div>
+
+
+        </div>
+        <!-- END row -->
+
+
+
+    </div>';
+     }
 }

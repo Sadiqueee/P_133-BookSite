@@ -7,7 +7,7 @@
  * Description : Permet à l'utilisateur de se connecter
  */
 //session_start();
-class LogIn
+class DoLogIn
 {
     const bddServer="localhost";
     const bddUserName="root";
@@ -17,7 +17,7 @@ class LogIn
     public function CheckData(){
 
         $_SESSION['connected']=false;
-        $_SESSION['login']="default";
+        $_SESSION['DoLogIn']="default";
 
         if(isset($_POST['submit'])){
             if(isset($_POST['mail']) && isset($_POST['password'])){
@@ -31,7 +31,7 @@ class LogIn
                 if(password_verify($pw,$hashedPw['useMdp'])==1) {
                     echo "<p><script language='JavaScript'>alert('You\'re connected')</script></p>";
                     $_SESSION['connected']=true;
-                    $_SESSION['login']=$mail;
+                    $_SESSION['DoLogIn']=$mail;
                 }
                 else
                     echo "<p><script language='JavaScript'>alert('Check your data and try again')</script></p>";
