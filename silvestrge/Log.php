@@ -24,6 +24,7 @@ include("database.php");
 
 <?php
 if(isset($_POST['submit'])){
+<<<<<<< HEAD
     $data=new database();
     if($data->logIn()){
         echo "<p><script language='JavaScript'>alert('You\'re connected')</script></p>";
@@ -32,6 +33,10 @@ if(isset($_POST['submit'])){
     else{
         echo "<p><script language='JavaScript'>alert('Check your data and try again')</script></p>";
     }
+=======
+    $register=new DoLogIn();
+    $register->CheckData();
+>>>>>>> 93926ab42cc5ab97e0f856e03397c223883829c2
 }
 ?>
     </section>

@@ -127,75 +127,11 @@
                 for ($i = 0 ; $i < 5 ; $i++){
 
 
-                    echo '<div style="width: 20%" class="col-lg-2-5 col-md-2 col-sm-2 animate-box">';
-                    echo '<a class="fh5co-card" href="#">';
-                    echo '<img src="images/img_large_1.jpg" alt="Free HTML5 Bootstrap template" class="img-responsive">';
-                    echo '<div class="fh5co-card-body">';
-                    echo '<h3>Titre : </h3>';
-                    echo '<h5>Auteur : </h5>';
-                    echo '<h5>Date de Sortie : </h5>';
-                    echo '<h5>Posté par : </h5>';
-                    echo '</div>';
-                    echo '</a>';
-                    echo '</div>';
+                    echo '<div style="width: 20%" class="col-lg-2-5 col-md-2 col-sm-2 animate-box"><a class="fh5co-card" href="#"><img src="images/img_large_1.jpg" alt="Free HTML5 Bootstrap template" class="img-responsive"><div class="fh5co-card-body"><h3>Titre : </h3><h5>Auteur : </h5><h5>Date de Sortie : </h5><h5>Posté par : </h5></div></a></div>';
                 }
                 ?>
 
-                <!--
-                <div style="width: 20%" class="col-lg-2-5 col-md-2 col-sm-2 animate-box">
-                    <a class="fh5co-card" href="#">
-                        <img src="images/img_large_1.jpg" alt="Free HTML5 Bootstrap template" class="img-responsive">
-                        <div class="fh5co-card-body">
-                            <h3>Titre</h3>
-                            <h5>Auteur</h5>
-                            <h5>Date Sortie</h5>
-                            <h5>Posté Par</h5>
-                        </div>
-                    </a>
-                </div>
--->
 
-
-
-
-                <!--
-                <div style="width: 20%"  class="col-lg-2-5 col-md-2 col-sm-2 animate-box">
-                    <a class="fh5co-card" href="#">
-                        <img src="images/img_large_1.jpg" alt="Free HTML5 Bootstrap template" class="img-responsive">
-                        <div class="fh5co-card-body">
-                            <h3>Web Developer</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sunt porro delectus cum officia magnam.</p>
-                        </div>
-                    </a>
-                </div>
-                <div style="width: 20%"  class="col-lg-2-5 col-md-2 col-sm-2 animate-box">
-                    <a class="fh5co-card" href="#">
-                        <img src="images/img_large_2.jpg" alt="Free HTML5 Bootstrap template" class="img-responsive">
-                        <div class="fh5co-card-body">
-                            <h3>User Experience</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sunt porro delectus cum officia magnam.</p>
-                        </div>
-                    </a>
-                </div>
-                <div style="width: 20%"  class="col-lg-2-5 col-md-2 col-sm-2 animate-box">
-                    <a class="fh5co-card" href="#">
-                        <img src="images/img_large_2.jpg" alt="Free HTML5 Bootstrap template" class="img-responsive">
-                        <div class="fh5co-card-body">
-                            <h3>Web Designer</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sunt porro delectus cum officia magnam.</p>
-                        </div>
-                    </a>
-                </div>
-                <div  style="width: 20%"  class="col-lg-2-5 col-md-2 col-sm-2 animate-box">
-                    <a class="fh5co-card" href="#">
-                        <img src="images/img_large_3.jpg" alt="Free HTML5 Bootstrap template" class="img-responsive">
-                        <div class="fh5co-card-body">
-                            <h3>Web Analyst</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sunt porro delectus cum officia magnam.</p>
-                        </div>
-                    </a>
-                </div>
-                -->
             </div>
         </div>
     </div>

@@ -8,10 +8,10 @@
  */
 
 session_start();
-include("LogIn.php");
+include("DoLogIngIn.php");
 
 if(isset($_POST['submit'])){
-    $register=new LogIn();
+    $register=new DoLogIn();
     $register->CheckData();
 }
 
