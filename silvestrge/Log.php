@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("LogIn.php");
+include("database.php");
 /**
  * ETML
  * Auteur : silvestrge
@@ -24,9 +24,10 @@ include("LogIn.php");
 
 <?php
 if(isset($_POST['submit'])){
-    $register=new LogIn();
-    if($register->CheckData()){
+    $data=new database();
+    if($data->logIn()){
         echo "<p><script language='JavaScript'>alert('You\'re connected')</script></p>";
+        header('location: Accueil.php');
     }
     else{
         echo "<p><script language='JavaScript'>alert('Check your data and try again')</script></p>";

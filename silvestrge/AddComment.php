@@ -9,18 +9,14 @@
 class AddComment
 {
     /**
+     * vérifie que tout les champs soient remplis
      * @return bool
-     * Vérifie que le user est bel et bien connecté
      */
-    public function CheckConnection(){
-        //vérifie que l'on est connecté
-        if (isset($_SESSION['connected'])) {
-            if ($_SESSION['connected']) {
+    public function checkFields(){
+        if(isset($_POST['grade']) && isset($_POST['comment']))
+            if($_POST['comment'])
                 return true;
-            }
-        }
-        else{
-            return false;
-        }
+
+        return false;
     }
 }

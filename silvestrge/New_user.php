@@ -1,5 +1,6 @@
 <?php
-include("Register.php");
+include_once ("Register.php");
+include_once ("database.php");
 /**
  * ETML
  * Auteur : Géraud Silvestri
@@ -30,14 +31,18 @@ include("Register.php");
             <?php
             if(isset($_POST['submit'])){
                 $register=new Register();
-                if($register->CheckEmail()) {
-                    $temp=$register->CreateAccount();
+                $data=new database();
+
+                if($data->checkEmail()) {
+                    $temp=$register->checkData();
 
                     // gère toutes les erreurs possibles
                     switch ($temp){
                         case 0 :
-                            echo "<script language=javascript>alert('Nouvel utilisateur crée avec succés')</script>";
+                            /*echo "<script language=javascript>alert('Nouvel utilisateur crée avec succés')</script>";
                             echo "<a href=\"Log.php\">Se connecter</a>";
+                            break;*/
+                            echo "<script language=javascript>alert('Veuillez ne pas toucher aux noms de mes objets svp')</script>";
                             break;
 
                         case 1 :
@@ -60,13 +65,11 @@ include("Register.php");
                             echo "<p><script language=javascript>alert('Votre mot de passe doit contenir un caractère spécial, une majuscule, un chiffre et doit faire au moins 8 caractères de long')</script></p>";
                             break;
 
-                        case 6 :
-                            echo "<script language=javascript>alert('Veuillez ne pas toucher aux noms de mes objets svp')</script>";
-                            break;
-
-                        case 7 :
-                            echo "<script language=javascript>alert('L\'ajout n\'as pas pu se faire.')</script>";
-                            break;
+                        case 6:
+                            if($data->addUser()) {
+                                echo "<script language = javascript > alert('L\'utilisateur a été crée')</script >";
+                                echo "<a href='Log.php'>Se connecter</a>";
+                                }
                     }
                 }else{
                     echo "Cette adresse mail est déjà prise";

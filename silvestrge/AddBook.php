@@ -1,5 +1,6 @@
 <?php
-include("New_book.php");
+include_once("New_book.php");
+include_once("database.php");
 /**
  * ETML
  * Auteur : fisherda
@@ -133,91 +134,65 @@ include("New_book.php");
 
 
                     <div class="heading text-center"><hr><h2>Votre Livre</h2><hr></div>
-                    <form method="post">
-
-                            <div class="lblForm">
-                                <label for="title">Titre*</label><br>
-                                <label for="category">Catégorie*</label><br>
-                                <label for="autor">Auteur*</label><br>
-                                <label for="editor">Editeur*</label><br>
-                                <label for="dateEditing">Année d'édition*</label><br>
-                                <label for="part">Extrait*</label><br>
-                                <label for="numberPage">Nombres de pages*</label><br>
-                                <label for="summary">Résumé*</label><br>
-                                <label id="covertLabel" for="covert">Image de couverture*</label><br>
-                            </div>
-                            <div class="inpForm">
-                                <input id="title" name="title" type="text"><br>
-                                <select  id="category" name="category" type="text"><br>
-                                    <option>Fantasy</option>
-                                    <option>Romance</option>
-                                    <option>Science-fiction</option>
-                                    <option>Polar</option>
-                                    <option>Historique</option>
-                                </select>
-                                <input id="autor"  name="author" type="text"><br>
-                                <input id="editor"  name="editor" type="text"><br>
-                                <input id="dateEditing"  name="dateEditing" type="date"><br>
-                                <input id="part" name="part" type="text"><br>
-                                <input id="numberPage" name="numberPage" type="number"><br>
-                                <textarea name="summary" id="summary" cols="35" rows="5"></textarea><br>
-                                <input id="covert" name="covert" type="file"><br>
-                                <input name="submit" type="submit">
-                            </div>
-
+                    <form method="post" enctype="multipart/form-data">
+                        <label for="title" class="lblForm">Titre</label><input class="inpForm" id="title" name="title" type="text"><br>
+                        <label for="category" class="lblForm">Catégorie</label>
+                        <select  id="category" class="inpForm" name="category">
+                            <option>Fantasy</option>
+                            <option>Romance</option>
+                            <option>Science-fiction</option>
+                            <option>Polar</option>
+                            <option>Historique</option>
+                        </select><br>
+                        <label for="autor" class="lblForm">Auteur</label><input class="inpForm" id="autor"  name="author" type="text"><br>
+                        <label for="editor" class="lblForm">Editeur</label><input class="inpForm" id="editor"  name="editor" type="text"><br>
+                        <label for="dateEditing" class="lblForm">Année d'édition</label><input class="inpForm" id="dateEditing"  name="dateEditing" type="date"><br>
+                        <label for="part" class="lblForm">Extrait</label><input class="inpForm" id="part" name="part" type="text"><br>
+                        <label for="numberPage" class="lblForm">Nombres de pages</label><input class="inpForm" id="numberPage" name="numberPage" type="number"><br>
+                        <label for="summary" class="lblForm">Résumé</label><textarea class="inpForm" name="summary" id="summary" cols="35" rows="5"></textarea><br>
+                        <label id="covertLabel" class="inpForm" for="covert">Image de couverture</label><input id="file" name="file" type="file"><br>
+                        <input name="submit" class="inpForm" type="submit">
                         </form>
 
                     <?php
 
                     if(isset($_POST['submit'])) {
                         $book = new New_book();
-
-                        if ($book->CheckConnection()) {
+                        $data = new database();
+                        if($data->CheckConnection()) {
                             if ($book->CheckFields()) {
-                                if ($book->CheckBook()) {
-                                    if ($book->CheckImage()) {
-                                        if ($book->addBook())
-                                            echo "Le livre a été ajouté";
+                                $path=$book->CheckImage();
+                                if ($path!="") {
+                                    if ($data->checkBook()) {
+                                        $data->addBook($path);
+                                        echo "Le livre a été ajouté";
+                                        $data->close();
                                     } else {
-                                        echo "Veuillez rentrer une image";
+                                        echo "Le livre existe déjà sur ce site";
+                                        echo "<a href=\"New_Comment.php?booName=" . $_POST['title'] . "\">Cliquez ici pour ajouter un commentaire à ce livre</a>";
                                     }
                                 } else {
-                                    echo "Le livre spécifié à déjà été publié sur ce site";
-                                    echo "<a href=\"New_Comment\">Cliquez ici pour ajouter un commentaire à ce livre</a>";
+                                    echo "Veuillez rentrer une image";
                                 }
-                            } else {
+                            } else
                                 echo "Veuillez remplir tout les champs";
-                            }
-                        } else {
+                        } else{
                             echo "<p>Veuillez vous connecter avant de pouvoir entrer un livre.</p><br>";
                             echo "<a href=\"Log.php\">Cliquez ici pour vous connecter.</a>";
                         }
                     }
                     ?>
                     <div class="fh5co-spacer fh5co-spacer-sm"></div>
-
-
-
-
                     <div class="fh5co-spacer fh5co-spacer-md"></div>
-
-
-
                 <div class="fh5co-spacer fh5co-spacer-md"></div>
 
                 <div class="row">
-
-
                     <div class="fh5co-spacer fh5co-spacer-lg"></div>
-
                 </div>
                 <!-- END row -->
 
-
-
                 </div>
                 <!-- END container -->
-
 
             </div>
             <!-- END fhtco-main -->
