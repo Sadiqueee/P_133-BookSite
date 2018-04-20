@@ -1,5 +1,6 @@
 <?php
-include("LogIn.php");
+session_start();
+include("database.php");
 /**
  * ETML
  * Auteur : silvestrge
@@ -19,14 +20,23 @@ include("LogIn.php");
                 <label for="mail">Adresse mail </label><input name="mail"/>
                 <label for="password">Mot de passe </label><input name="password" type="password"/>
                 <input id="validate" type="submit" name="submit" value="Valider"/>
-                <p id="answer"><?php ?></p>
-                <a id="link" href="AddBook.php">aasd</a>
             </form>
 
 <?php
 if(isset($_POST['submit'])){
+<<<<<<< HEAD
+    $data=new database();
+    if($data->logIn()){
+        echo "<p><script language='JavaScript'>alert('You\'re connected')</script></p>";
+        header('location: Accueil.php');
+    }
+    else{
+        echo "<p><script language='JavaScript'>alert('Check your data and try again')</script></p>";
+    }
+=======
     $register=new DoLogIn();
     $register->CheckData();
+>>>>>>> 93926ab42cc5ab97e0f856e03397c223883829c2
 }
 
 ?>

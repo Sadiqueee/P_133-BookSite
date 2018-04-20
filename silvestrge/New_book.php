@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once ("database.php");
 /**
  * ETML
  * Auteur : silvestrge
@@ -9,48 +10,50 @@ session_start();
 
 class New_book
 {
-    const bddServer="localhost";
-    const bddUserName="root";
-    const bddPassword="root";
-    const bddName="db_book";
-
     /**
-     * ajoute un livre à la BDD après quelques vérifications
+     * Vérifie que le fichier est une image
+     * @return mixed retourne le chemin de l'image
      */
-    public function addBook()
-    {
-        if (isset($_SESSION['connected'])) {
-            if ($_SESSION['connected']) {
-                if (isset($_POST['title']) && isset($_POST['category']) && isset($_POST['author']) && isset($_POST['editor']) && isset($_POST['dateEditing']) && isset($_POST['part']) && isset($_POST['numberPage']) && isset($_POST['summary']) && isset($_POST['covert']) && isset($_POST['part'])) {
-                    if ($_POST['title'] && $_POST['category'] && $_POST['author'] && $_POST['editor'] && $_POST['dateEditing'] && isset($_POST['part']) && $_POST['numberPage'] && $_POST['summary'] && $_POST['covert'] && $_POST['part']) {
-                        $connection = new PDO("mysql:host=" . self::bddServer . ";dbname=" . self::bddName . ";charset=utf8", self::bddUserName, self::bddPassword);
+    public function CheckImage(){
+        $regex="/^.*\.(JPG|Tif|PNG|jpg|png|tif|jpeg)$/";
+        $regexName="/^[A-Za-z\.]*$/";
 
-                        $queryID = "SELECT DISTINCT idUser FROM t_user WHERE useMail='geraud@peyredieu.fr';";
-                        $id = $connection->query($queryID);
-                        $id = $id->fetch(PDO::FETCH_ASSOC);
-                        $query = "INSERT INTO t_book VALUES (NULL,'" . $_POST["title"] . "','" . $_POST["numberPage"] . "','" . $_POST["part"] . "','" . $_POST['summary'] . "','" . $_POST['covert'] . "','" . $id['idUser'] . "\')');";
-                        $connection->query($query);
-
+        if(isset($_FILES['file'])) {
+            if ($_FILES['file']['name'] != "") {
+                if (preg_match($regexName, $_FILES['file']['name'])) {
+                    if (preg_match($regex, $_FILES['file']['name'])) {
+                        if ($_FILES['file']['error'] == 0) {
+                            $originalName = $_FILES['file']['name'];
+                            $originalPath = pathinfo($originalName);
+                            $fileExtension = $originalPath['extension'];
+                            echo $fileExtension;
+                            $addedDate = gmdate("d.M.y h.i.s", time());
+                            $strSource = $_FILES['file']['tmp_name'];
+                            $strPath = "./images/";
+                            $strDestination = $addedDate . " " . $_FILES['file']['name'];
+                            move_uploaded_file($strSource, $strPath . $strDestination);
+                            return $strPath . $strDestination;
+                        }
                     }
                 }
             }
         }
     }
 
-
-
-
     /**
-     * ajoute une catégorie au livre
+     * vérifie que tout les champs soient remplis
+     * @return bool false si non, true si oui
      */
-    public function addCategory(){
-        if(isset($_POST['category'])) {
-            $queryCat = "SELECT DISTINCT idCategory from t_category WHERE catName='" . $_POST['category'] . "';";
-            $queryBook = "SELECT DISTINCT idBook from t_book WHERE boo";
-            $connection = new PDO("mysql:host=" . self::bddServer . ";dbname=" . self::bddName . ";charset=utf8", self::bddUserName, self::bddPassword);
+    public function checkFields()
+    {
+        $check = false;
 
-            $idCat=$connection->query($queryCat);
-            $idCat=$idCat->fetch(PDO::FETCH_ASSOC);
+        if (isset($_POST['title']) && isset($_POST['category']) && isset($_POST['author']) && isset($_POST['editor']) && isset($_POST['dateEditing']) && isset($_POST['part']) && isset($_POST['numberPage']) && isset($_POST['summary']) && isset($_FILES['file']) && isset($_POST['part'])) {
+            if ($_POST['title'] != "" && $_POST['category'] != "" && $_POST['author'] != "" && $_POST['editor'] != "" && $_POST['dateEditing'] != "" && $_POST['numberPage'] != "" && $_POST['summary'] != "" && $_FILES['file']['name'] != "" && $_POST['part'] != "") {
+                return true;
+            }
         }
+
+        return false;
     }
 }
