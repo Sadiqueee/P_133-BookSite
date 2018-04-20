@@ -16,7 +16,7 @@ class Database
 
 
     private $bddPassword="root";
-    private $bddName="db_book";
+    private $bddName="root";
     //Constructeur de la clase qui va créer une connexion avec la base de données
     public function __construct()
     {

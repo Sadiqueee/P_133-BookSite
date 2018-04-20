@@ -28,6 +28,7 @@ if(isset($_POST['submit'])){
     $register=new DoLogIn();
     $register->CheckData();
 }
+
 ?>
     </section>
 

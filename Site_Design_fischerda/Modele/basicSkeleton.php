@@ -95,7 +95,7 @@
                                     </li>
                     
                                     <li><a href="Categorie.php">Catégorie</a></li>
-                                    <li><a href="MonLivre.php">Mon Livre</a></li>
+                                    <li><a href="http://localhost:8080/P_133-BookSite/Site_Design_fischerda/?page=AddBook" >Ajouter un livre</a></li>
                                     <li><a href="contact.html">Contact</a></li>
                                 </ul>
                             </nav>

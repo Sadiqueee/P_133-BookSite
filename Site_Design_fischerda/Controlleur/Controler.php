@@ -39,20 +39,25 @@ class Controler
     function FiveBooks()
     {
         $allbooks = $this->ReceiveBooks();
-        $countBooks =
+        $countBooks = count($allbooks);
         $allusers = $this->ReceiveUsers();
+
         $content = '<div id="fh5co-main"><div class="fh5co-cards"><div class="container-fluid"><div class="row animate-box"><div class="col-md-12 heading text-center"><h2>Nos derniers Livres</h2></div></div><div  class="row">';
-        for ($i = $countBooks ; $i > $countBooks-5 ; $i--)
+        for ($i = $countBooks-1 ; $i > ( $countBooks-6) ; $i--)
+        {
+            $idUser= $allbooks[$i]["idUser"] -1;
             $content.= '<div style="width: 20%" class="col-lg-2-5 col-md-2 col-sm-2 animate-box">
                             <a class="fh5co-card" href="#"><img src="Ressources/images/Origine.jpg" alt="Free HTML5 Bootstrap template" class="img-responsive">
                                 <div class="fh5co-card-body">
                                     <h3>Titre : ' . $allbooks[$i]["booTitle"] .'</h3>
                                     <h5>Auteur : ' . $allbooks[$i]["booAuthor"] .' </h5>
                                     <h5>Date de Sortie : ' . $allbooks[$i]["booEdiYear"] .' </h5>
-                                    <h5>Posté par : ' . $allusers[$allbooks[$i]["idUser"]]["useSurname"].' '.$allusers[$allbooks[$i]["idUser"]]["useName"] .'</h5>
+                                    <h5>Posté par : ' . $allusers[$idUser]["useSurname"].' '.$allusers[$idUser]["useName"] .'</h5>
                                 </div>
                             </a>
                         </div>';
+        }
+
         return $content;
     }
 
@@ -64,7 +69,7 @@ class Controler
     }
     function ReceiveUsers(){
         $this->daba = new Database();
-        $content =  $this->daba->getAllBooks();
+        $content =  $this->daba->getAllUsers();
         $this->countBook = $this->daba->count;
         $this->daba->close();
         return $content;
